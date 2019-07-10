@@ -42,7 +42,7 @@ class Home extends React.Component {
   }
 
   componentDidMount() {
-    this.props.getPokemonList();
+    this.props.getPokemonList(this.props.pokemons.pagination.currentPage);
   }
 
   render() {

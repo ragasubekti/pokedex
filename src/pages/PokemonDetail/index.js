@@ -7,11 +7,14 @@ const Wrapper = styled.div`
 `;
 
 class PokemonDetail extends React.Component {
-  
+  componentDidMount() {}
+
   render() {
     return (
       <Wrapper>
-        <h1>Hello World</h1>
+        <div className="row">
+          <div className="col-3" />
+        </div>
       </Wrapper>
     );
   }

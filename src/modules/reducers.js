@@ -15,7 +15,7 @@ const initialState = {
     errorMessage: "",
     data: [],
     pagination: {
-      currentPage: 0,
+      currentPage: 1,
       hasNext: false,
       total: 0
     }
@@ -57,7 +57,9 @@ export default (state = initialState, action) => {
           ...state.list,
           isLoading: false,
           data:
-            state.list.pagination.currentPage !== action.payload.page
+            state.list.data.length <= 0 ||
+            // state.list.pagination.currentPage !== action.payload.page ||
+            state.list.pagination.currentPage < action.payload.page
               ? state.list.data.concat(action.payload.data)
               : state.list.data,
           pagination: {
