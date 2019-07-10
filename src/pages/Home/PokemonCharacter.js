@@ -84,7 +84,6 @@ const LoadingWrapper = styled.div`
 
 const DetailButton = styled(Link)`
   display: block;
-  /* width: 100%; */
   padding: 0.4rem;
   margin: 0.5rem;
   text-align: center;
@@ -92,19 +91,19 @@ const DetailButton = styled(Link)`
 
   background: linear-gradient(to right, #f5af19, #f12711);
   border-radius: 10px 0;
+
+  &:hover {
+    color: #fff;
+    font-weight: bold;
+    text-decoration: none;
+    background: linear-gradient(to bottom right, #f5af19, #f12711);
+  }
 `;
 
 class PokemonCharacter extends React.Component {
   componentDidMount() {
     if (!this.props.detail.id) {
       this.props.getPokemon(this.props.id, this.props.detail.name);
-    }
-  }
-
-  componentWillReceiveProps(currentProps, nextProps) {
-    if (currentProps !== nextProps) {
-      nextProps.detail &&
-        this.props.getPokemon(nextProps.id, nextProps.detail.name);
     }
   }
 
@@ -158,7 +157,11 @@ class PokemonCharacter extends React.Component {
               </PokemonDetail>
             )}
 
-            {this.props.detail.types && <DetailButton>Detail</DetailButton>}
+            {this.props.detail.types && (
+              <DetailButton to={`/${this.props.detail.name}`}>
+                Detail
+              </DetailButton>
+            )}
           </React.Fragment>
         )}
       </PokemonCard>

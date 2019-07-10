@@ -56,7 +56,10 @@ export default (state = initialState, action) => {
         list: {
           ...state.list,
           isLoading: false,
-          data: action.payload.data,
+          data:
+            state.list.pagination.currentPage !== action.payload.page
+              ? state.list.data.concat(action.payload.data)
+              : state.list.data,
           pagination: {
             ...state.list.pagination,
             hasNext: action.payload.hasNext,

@@ -5,6 +5,7 @@ import { getPokemonList } from "../../modules/actions";
 import { bindActionCreators } from "redux";
 import PokemonCharacter from "./PokemonCharacter";
 import styled from "@emotion/styled";
+import debounce from "lodash.debounce";
 
 import { PropagateLoader } from "react-spinners";
 import FilterDropdown from "./FilterDropdown";
@@ -15,7 +16,31 @@ const HomeWrapper = styled.div`
   justify-content: center;
 `;
 
+const LoadingWrapper = styled.div`
+  margin: 3rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+
 class Home extends React.Component {
+  constructor(props) {
+    super(props);
+
+    window.onscroll = debounce(() => {
+      if (
+        window.innerHeight + document.documentElement.scrollTop ===
+        document.documentElement.offsetHeight
+      ) {
+        if (this.props.pokemons.pagination.hasNext) {
+          this.props.getPokemonList(
+            this.props.pokemons.pagination.currentPage + 1
+          );
+        }
+      }
+    }, 100);
+  }
+
   componentDidMount() {
     this.props.getPokemonList();
   }
@@ -28,11 +53,13 @@ class Home extends React.Component {
           {this.props.pokemons.data.map((pokemon, index) => (
             <PokemonCharacter detail={pokemon} id={index} key={pokemon.name} />
           ))}
+        </HomeWrapper>
+        <LoadingWrapper>
           <PropagateLoader
             loading={this.props.pokemons.isLoading}
             color="#ff416c"
           />
-        </HomeWrapper>
+        </LoadingWrapper>
       </React.Fragment>
     );
   }
