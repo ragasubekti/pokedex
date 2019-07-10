@@ -1,8 +1,9 @@
 import React from "react";
 import styled from "@emotion/styled";
-import { getPokemon } from "../../modules/actions";
-
 import { connect } from "react-redux";
+import { Link } from "react-router-dom";
+
+import { getPokemon } from "../../modules/actions";
 
 const PokemonCard = styled.div`
   background: #fff;
@@ -31,8 +32,10 @@ const PokemonImage = styled.img`
 const PokemonInfo = styled.div`
   background: linear-gradient(to bottom right, #ee0979, #ff6a00);
   color: #fff;
-  padding: 1rem;
-  border-radius: 10px 0;
+  padding: 0.2rem 1rem;
+  border-top-left-radius: 10px;
+  display: flex;
+  justify-content: space-between;
 `;
 
 const PokemonName = styled.div`
@@ -41,9 +44,51 @@ const PokemonName = styled.div`
   font-size: 18px;
 `;
 
+const PokemonType = styled.div`
+  padding: 0.2rem 1rem;
+  border-bottom-right-radius: 10px;
+  text-align: center;
+  small {
+    font-weight: bold;
+  }
+
+  div {
+    display: flex;
+    justify-content: space-around;
+    text-transform: uppercase;
+  }
+`;
+
+const PokemonDetail = styled.div`
+  padding: 0.2rem 1rem;
+
+  display: flex;
+  justify-content: space-between;
+
+  div {
+    text-align: center;
+    span,
+    small {
+      display: block;
+    }
+  }
+`;
+
+const DetailButton = styled(Link)`
+  display: block;
+  /* width: 100%; */
+  padding: 0.4rem;
+  margin: 0.5rem;
+  text-align: center;
+  color: #fff;
+
+  background: linear-gradient(to right, #f5af19, #f12711);
+  border-radius: 10px 0;
+`;
+
 class PokemonCharacter extends React.Component {
   componentDidMount() {
-    this.props.getPokemon(this.props.id, this.props.name);
+    this.props.getPokemon(this.props.id, this.props.detail.name);
   }
 
   convertToNameCase = name => {
@@ -55,13 +100,42 @@ class PokemonCharacter extends React.Component {
       <PokemonCard>
         <ImageWrapper>
           <PokemonImage
-            src={`https://img.pokemondb.net/artwork/${this.props.name}.jpg`}
-            alt={this.convertToNameCase(this.props.name)}
+            src={`https://img.pokemondb.net/artwork/${
+              this.props.detail.name
+            }.jpg`}
+            alt={this.convertToNameCase(this.props.detail.name)}
           />
         </ImageWrapper>
         <PokemonInfo>
-          <PokemonName>{this.convertToNameCase(this.props.name)}</PokemonName>
+          <PokemonName>
+            {this.convertToNameCase(this.props.detail.name)}
+          </PokemonName>
+          #{this.props.detail.id}
         </PokemonInfo>
+        {this.props.detail.types && (
+          <PokemonType>
+            <small>TYPE</small>
+            <div>
+              {this.props.detail.types.map(item => (
+                <span>{item.type.name}</span>
+              ))}
+            </div>
+          </PokemonType>
+        )}
+        {this.props.detail.height && this.props.detail.weight && (
+          <PokemonDetail>
+            <div>
+              <small>HEIGHT</small>
+              <span>{this.props.detail.height / 100}m</span>
+            </div>
+            <div>
+              <small>WEIGHT</small>
+              <span>{this.props.detail.weight / 10}kg</span>
+            </div>
+          </PokemonDetail>
+        )}
+
+        <DetailButton>Detail</DetailButton>
       </PokemonCard>
     );
   }
