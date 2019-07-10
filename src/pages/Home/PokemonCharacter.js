@@ -2,6 +2,7 @@ import React from "react";
 import styled from "@emotion/styled";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
+import { SyncLoader } from "react-spinners";
 
 import { getPokemon } from "../../modules/actions";
 
@@ -74,6 +75,13 @@ const PokemonDetail = styled.div`
   }
 `;
 
+const LoadingWrapper = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 2rem auto;
+`;
+
 const DetailButton = styled(Link)`
   display: block;
   /* width: 100%; */
@@ -121,30 +129,38 @@ class PokemonCharacter extends React.Component {
           </PokemonName>
           #{this.props.detail.id}
         </PokemonInfo>
-        {this.props.detail.types && (
-          <PokemonType>
-            <small>TYPE</small>
-            <div>
-              {this.props.detail.types.map(item => (
-                <span>{item.type.name}</span>
-              ))}
-            </div>
-          </PokemonType>
-        )}
-        {this.props.detail.height && this.props.detail.weight && (
-          <PokemonDetail>
-            <div>
-              <small>HEIGHT</small>
-              <span>{this.props.detail.height / 100}m</span>
-            </div>
-            <div>
-              <small>WEIGHT</small>
-              <span>{this.props.detail.weight / 10}kg</span>
-            </div>
-          </PokemonDetail>
-        )}
+        {this.props.detail.isLoading ? (
+          <LoadingWrapper>
+            <SyncLoader size={5} color="#ff416c" />
+          </LoadingWrapper>
+        ) : (
+          <React.Fragment>
+            {this.props.detail.types && (
+              <PokemonType>
+                <small>TYPE</small>
+                <div>
+                  {this.props.detail.types.map(item => (
+                    <span>{item.type.name}</span>
+                  ))}
+                </div>
+              </PokemonType>
+            )}
+            {this.props.detail.height && this.props.detail.weight && (
+              <PokemonDetail>
+                <div>
+                  <small>HEIGHT</small>
+                  <span>{this.props.detail.height / 100}m</span>
+                </div>
+                <div>
+                  <small>WEIGHT</small>
+                  <span>{this.props.detail.weight / 10}kg</span>
+                </div>
+              </PokemonDetail>
+            )}
 
-        <DetailButton>Detail</DetailButton>
+            {this.props.detail.types && <DetailButton>Detail</DetailButton>}
+          </React.Fragment>
+        )}
       </PokemonCard>
     );
   }

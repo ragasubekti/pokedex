@@ -2,6 +2,7 @@ import axios from "axios";
 import { API_URL } from "../constants";
 
 export const GET_POKELIST = `GET_POKELIST`;
+export const GET_POKELIST_AND_RESET = `GET_POKELIST_AND_RESET`;
 export const GET_POKELIST_SUCCESS = `GET_POKELIST_SUCCESS`;
 
 export const GET_POKEMON_DETAIL = `GET_POKEMON_DETAIL`;
@@ -82,7 +83,7 @@ export const getPokemonTypes = () => async dispatch => {
 
 export const getPokemonByType = type => async dispatch => {
   dispatch({
-    type: GET_POKELIST
+    type: GET_POKELIST_AND_RESET
   });
 
   try {
