@@ -3,9 +3,10 @@ import styled from "@emotion/styled";
 
 import { connect } from "react-redux";
 
-import { getPokemonTypes, getPokemonByType } from "../modules/actions";
+import { getPokemonTypes, getPokemonByType } from "../../modules/actions";
 
 const SelectStyled = styled.button`
+  margin: auto 3rem;
   padding: 5px 10px;
   font-size: small;
   border: none;
@@ -13,7 +14,7 @@ const SelectStyled = styled.button`
   background: linear-gradient(to right, #0083b0, #00b4db);
   width: 120px;
 
-  border-radius: ${props => (props.isActive ? "6px 0" : "6px 0 0 0")};
+  border-radius: ${props => (props.isActive ? "6px 0" : "6px 6px 0 0")};
   position: relative;
 
   &:focus {
@@ -38,8 +39,8 @@ const DropdownList = styled.div`
   border: 1px solid #0083b0;
   padding: 10px;
   width: ${props => (!props.isActive ? "120px" : "300px")};
-  right: 3rem;
-  border-radius: 6px 0;
+  left: 3rem;
+  border-radius: 0 6px 6px 6px;
   display: flex;
   flex-wrap: wrap;
 `;
@@ -90,7 +91,7 @@ class FilterDropdown extends React.Component {
           Filter By Type{" "}
           <span className="caret">
             <img
-              src={require("../assets/caret.svg")}
+              src={require("../../assets/caret.svg")}
               alt="Caret"
               className={this.state.isDropdownOpen ? "is-active" : ""}
             />

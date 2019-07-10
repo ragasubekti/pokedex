@@ -7,6 +7,7 @@ import PokemonCharacter from "./PokemonCharacter";
 import styled from "@emotion/styled";
 
 import { PropagateLoader } from "react-spinners";
+import FilterDropdown from "./FilterDropdown";
 
 const HomeWrapper = styled.div`
   display: flex;
@@ -21,15 +22,18 @@ class Home extends React.Component {
 
   render() {
     return (
-      <HomeWrapper>
-        {this.props.pokemons.data.map((pokemon, index) => (
-          <PokemonCharacter detail={pokemon} id={index} key={pokemon.name} />
-        ))}
-        <PropagateLoader
-          loading={this.props.pokemons.isLoading}
-          color="#ff416c"
-        />
-      </HomeWrapper>
+      <React.Fragment>
+        <FilterDropdown />
+        <HomeWrapper>
+          {this.props.pokemons.data.map((pokemon, index) => (
+            <PokemonCharacter detail={pokemon} id={index} key={pokemon.name} />
+          ))}
+          <PropagateLoader
+            loading={this.props.pokemons.isLoading}
+            color="#ff416c"
+          />
+        </HomeWrapper>
+      </React.Fragment>
     );
   }
 }
