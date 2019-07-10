@@ -1,23 +1,29 @@
 import React from "react";
 import { connect } from "react-redux";
 import styled from "@emotion/styled";
+import PokemonCharacter from "../Home/PokemonCharacter";
 
 const Wrapper = styled.div`
   margin: 0 3rem;
 `;
 
 class PokemonDetail extends React.Component {
+  state = {
+    id: "",
+    selectedPokemon: {
+      name: ""
+    }
+  };
+
   componentDidMount() {}
 
   render() {
-    return (
-      <Wrapper>
-        <div className="row">
-          <div className="col-3" />
-        </div>
-      </Wrapper>
-    );
+    return <Wrapper />;
   }
 }
 
-export default connect()(PokemonDetail);
+const mapStateToProps = state => ({
+  pokemons: state.list
+});
+
+export default connect(mapStateToProps)(PokemonDetail);

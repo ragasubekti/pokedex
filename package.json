@@ -15,8 +15,7 @@
     "react-scripts": "3.0.1",
     "react-spinners": "^0.5.8",
     "redux": "^4.0.3",
-    "redux-thunk": "^2.3.0",
-    "superagent": "^5.1.0"
+    "redux-thunk": "^2.3.0"
   },
   "scripts": {
     "start": "react-scripts start",

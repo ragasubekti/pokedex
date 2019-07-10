@@ -1,7 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
 
-import { getPokemonList } from "../../modules/actions";
 import { bindActionCreators } from "redux";
 import PokemonCharacter from "./PokemonCharacter";
 import styled from "@emotion/styled";
@@ -9,6 +8,8 @@ import debounce from "lodash.debounce";
 
 import { PropagateLoader } from "react-spinners";
 import FilterDropdown from "./FilterDropdown";
+
+import { getPokemonList } from "../../modules/pokemon/action";
 
 const HomeWrapper = styled.div`
   display: flex;
@@ -66,7 +67,7 @@ class Home extends React.Component {
 }
 
 const mapStateToProps = state => ({
-  pokemons: state.list
+  pokemons: state.pokemon
 });
 
 const mapDispatchToProps = dispatch =>

@@ -3,7 +3,7 @@ import styled from "@emotion/styled";
 
 import { connect } from "react-redux";
 
-import { getPokemonTypes, getPokemonByType } from "../../modules/actions";
+import { getPokemonTypes, getPokemonByType } from "../../modules/types/action";
 
 const SelectStyled = styled.button`
   margin: auto 3rem;

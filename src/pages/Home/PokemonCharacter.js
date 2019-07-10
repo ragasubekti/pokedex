@@ -4,9 +4,9 @@ import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import { SyncLoader } from "react-spinners";
 
-import { getPokemon } from "../../modules/actions";
+import { getPokemon } from "../../modules/pokemon/action";
 
-const PokemonCard = styled.div`
+export const PokemonCard = styled.div`
   background: #fff;
   display: block;
   box-shadow: 0 5px 5px rgba(109, 213, 237, 0.2);
@@ -16,21 +16,21 @@ const PokemonCard = styled.div`
   border: 1px solid pink;
 `;
 
-const ImageWrapper = styled.div`
+export const ImageWrapper = styled.div`
   display: flex;
   padding: 2rem;
   justify-content: center;
   align-items: center;
 `;
 
-const PokemonImage = styled.img`
+export const PokemonImage = styled.img`
   width: 160px;
   height: 160px;
 
   object-fit: cover;
 `;
 
-const PokemonInfo = styled.div`
+export const PokemonInfo = styled.div`
   background: linear-gradient(to bottom right, #ee0979, #ff6a00);
   color: #fff;
   padding: 0.2rem 1rem;
@@ -39,13 +39,13 @@ const PokemonInfo = styled.div`
   justify-content: space-between;
 `;
 
-const PokemonName = styled.div`
+export const PokemonName = styled.div`
   text-transform: capitalize;
   font-weight: 600;
   font-size: 18px;
 `;
 
-const PokemonType = styled.div`
+export const PokemonType = styled.div`
   padding: 0.2rem 1rem;
   border-bottom-right-radius: 10px;
   text-align: center;
@@ -60,7 +60,7 @@ const PokemonType = styled.div`
   }
 `;
 
-const PokemonDetail = styled.div`
+export const PokemonDetail = styled.div`
   padding: 0.2rem 1rem;
 
   display: flex;
@@ -158,7 +158,7 @@ class PokemonCharacter extends React.Component {
             )}
 
             {this.props.detail.types && (
-              <DetailButton to={`/${this.props.detail.name}`}>
+              <DetailButton to={`/${this.props.detail.name}-${this.props.id}`}>
                 Detail
               </DetailButton>
             )}
