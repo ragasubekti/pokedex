@@ -71,6 +71,12 @@ class PokemonDetail extends React.Component {
                     <span>{detail.height / 10}m</span>
                     <DetailSubSmall>Weight</DetailSubSmall>
                     <span>{detail.weight / 10}kg</span>
+                    <DetailSubSmall>Type</DetailSubSmall>
+                    {detail.types.map(item => (
+                      <span className="d-block text-capitalize">
+                        {item.type.name}
+                      </span>
+                    ))}
                   </div>
                   <div className="col-md-6 p-4">
                     <DetailSubSmall>Category</DetailSubSmall>
