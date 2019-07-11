@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import styled from "@emotion/styled";
 import { getPokemonDetailPage } from "../../modules/detail/action";
 import { SyncLoader } from "react-spinners";
-import { LoadingWrapper } from "../Home/PokemonCharacter";
+import { LoadingWrapper } from "../Home/styled";
 import PokemonCard from "./PokemonCard";
 
 const Wrapper = styled.div`
