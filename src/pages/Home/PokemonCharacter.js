@@ -75,7 +75,7 @@ export const PokemonDetail = styled.div`
   }
 `;
 
-const LoadingWrapper = styled.div`
+export const LoadingWrapper = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
@@ -148,7 +148,7 @@ class PokemonCharacter extends React.Component {
               <PokemonDetail>
                 <div>
                   <small>HEIGHT</small>
-                  <span>{this.props.detail.height / 100}m</span>
+                  <span>{this.props.detail.height / 10}m</span>
                 </div>
                 <div>
                   <small>WEIGHT</small>
@@ -158,7 +158,7 @@ class PokemonCharacter extends React.Component {
             )}
 
             {this.props.detail.types && (
-              <DetailButton to={`/${this.props.detail.name}-${this.props.id}`}>
+              <DetailButton to={`/${this.props.detail.name}`}>
                 Detail
               </DetailButton>
             )}
